@@ -16,12 +16,18 @@ def git_sha(directory: str = ".") -> str:
 
 @click.command()
 @click.option(
-    "--host", type=str, default="http://deploy.alexrudy.local/", envvar="DEPLOYER_HOST", help="Host for deployer"
+    "--host",
+    type=str,
+    default="http://deploy.alexrudy.local/",  # TODO: Figure out a sensible default, or maybe remove
+    envvar="DEPLOYER_HOST",
+    help="Host for deployer",
 )
 @click.option(
     "--api-endpoint", type=str, default="/compose/projects/", envvar="DEPLOYER_API_ENDPOINT", help="Path to endpoint"
 )
-@click.option("-P", "--project", type=str, envvar="COMPOSE_PROJECT_NAME", help="Project name in deployer")
+@click.option(
+    "-P", "--project", type=str, envvar="COMPOSE_PROJECT_NAME", required=True, help="Project name in deployer"
+)
 @click.option("--token", type=str, envvar="DEPLOYER_TOKEN", required=True, help="API Token for deployer")
 @click.option("--version", type=str, help="Version information for this configuration")
 @click.argument("configuration", type=click.File("rb"))

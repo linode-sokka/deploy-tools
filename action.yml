@@ -1,0 +1,36 @@
+---
+name: sokka-deployer-configure
+description: Configure the sokka homelab deployer
+inputs:
+  host:
+    description: Deployer host
+    required: false
+    default: http://deploy.alexrudy.net/
+  token:
+    description: Deployer token
+    required: true
+  project_name:
+    description: Deployer project name
+    required: true
+  version:
+    description: Version
+    required: true
+  configuration:
+    description: Configuration to use
+    required: true
+branding:
+  color: yellow
+  icon: upload-cloud
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+  - '--host'
+  - ${{ inputs.host }}
+  - '--token'
+  - ${{ inputs.token }}
+  - '--project'
+  - ${{ inputs.project_name }}
+  - '--version'
+  - ${{ inputs.version }}
+  - ${{ inputs.configuration }}
