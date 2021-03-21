@@ -5,7 +5,7 @@ inputs:
   host:
     description: Deployer host
     required: false
-    default: http://deploy.alexrudy.net/
+    default: https://deploy.alexrudy.net/
   token:
     description: Deployer token
     required: true
