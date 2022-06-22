@@ -48,7 +48,7 @@ def main(
     click.echo(f"POST {url}", err=True)
 
     result = requests.post(url, data=configuration.read(), allow_redirects=False, headers=headers)
-    if result.status_code != 200:
+    if result.status_code >= 400:
         msg = click.style("[ERROR]", fg="red")
         click.echo(f"{msg} {result.status_code} Error in HTTP response:", err=True)
         click.echo(result.text, err=True)
